@@ -1,0 +1,127 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+enum LotStatus {
+  IN_FREEZER
+  PARTIALLY_THAWING
+  FULLY_THAWING
+  USED
+}
+
+enum ThawStatus {
+  THAWING
+  WAITING_TANK
+  IN_TANK
+  USED
+}
+
+enum TankStatus {
+  EMPTY
+  IN_USE
+  READY
+}
+
+enum EventType {
+  RECEIVE
+  ASSIGN_ZONE
+  START_THAW
+  ENTER_TANK
+  WITHDRAW
+  REORDER_ALERT
+}
+
+enum Role {
+  WAREHOUSE
+  PRODUCTION
+  MANAGER
+  ADMIN
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      Role     @default(WAREHOUSE)
+  createdAt DateTime @default(now())
+}
+
+model Lot {
+  id          String    @id @default(cuid())
+  lotNumber   String    @unique
+  batchId     String    @unique
+  supplier    String
+  weightKg    Float
+  remainingKg Float     // คงเหลือในตู้แช่
+  zone        String?
+  status      LotStatus @default(IN_FREEZER)
+  receivedAt  DateTime
+  createdAt   DateTime  @default(now())
+
+  thawEvents  ThawEvent[]
+  ledgers     Ledger[]
+}
+
+model ThawEvent {
+  id          String     @id @default(cuid())
+  lotId       String
+  lot         Lot        @relation(fields: [lotId], references: [id])
+  weightKg    Float
+  remainingKg Float 
+  startedAt   DateTime
+  readyAt     DateTime
+  confirmedBy String
+  status      ThawStatus @default(THAWING)
+  createdAt   DateTime   @default(now())
+
+  tankEntries TankEntry[]
+  ledgers     Ledger[]
+}
+
+model Tank {
+  id              String     @id @default(cuid())
+  tankNumber      Int        @unique
+  capacityKg      Float      @default(400)
+  currentWeightKg Float      @default(0)
+  status          TankStatus @default(EMPTY)
+  updatedAt       DateTime   @updatedAt
+
+  tankEntries TankEntry[]
+}
+
+model TankEntry {
+  id          String     @id @default(cuid())
+  tankId      String
+  tank        Tank       @relation(fields: [tankId], references: [id])
+  thawEventId String
+  thawEvent   ThawEvent  @relation(fields: [thawEventId], references: [id])
+  weightKg    Float
+  filledAt    DateTime
+  emptyAt     DateTime?
+  createdAt   DateTime   @default(now())
+
+  ledgers Ledger[]
+}
+
+model Ledger {
+  id              String     @id @default(cuid())
+  eventType       EventType
+  lotId           String?
+  lot             Lot?       @relation(fields: [lotId], references: [id])
+  thawEventId     String?
+  thawEvent       ThawEvent? @relation(fields: [thawEventId], references: [id])
+  tankEntryId     String?
+  tankEntry       TankEntry? @relation(fields: [tankEntryId], references: [id])
+  weightKg        Float
+  actorId         String
+  productionOrder String?
+  note            String?
+  createdAt       DateTime   @default(now())
+}
