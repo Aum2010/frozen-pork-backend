@@ -16,16 +16,15 @@ class CreateLotDto {
     supplier;
     weightKg;
     receivedAt;
+    expiryDate;
 }
 exports.CreateLotDto = CreateLotDto;
 __decorate([
     (0, class_validator_1.IsString)(),
-    (0, class_validator_1.MinLength)(1),
     __metadata("design:type", String)
 ], CreateLotDto.prototype, "lotNumber", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
-    (0, class_validator_1.MinLength)(1),
     __metadata("design:type", String)
 ], CreateLotDto.prototype, "supplier", void 0);
 __decorate([
@@ -37,4 +36,9 @@ __decorate([
     (0, class_validator_1.IsDateString)(),
     __metadata("design:type", String)
 ], CreateLotDto.prototype, "receivedAt", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], CreateLotDto.prototype, "expiryDate", void 0);
 //# sourceMappingURL=create-lot.dto.js.map

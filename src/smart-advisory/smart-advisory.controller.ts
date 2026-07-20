@@ -7,7 +7,7 @@ import { Roles } from '../auth/decorators/roles.decorator'
 @UseGuards(JwtAuthGuard, RolesGuard)
 @Controller('advisory')
 export class SmartAdvisoryController {
-  constructor(private advisoryService: SmartAdvisoryService) {}
+  constructor(private advisoryService: SmartAdvisoryService) { }
 
   @Roles('WAREHOUSE', 'PRODUCTION', 'MANAGER', 'ADMIN')
   @Get('status')
@@ -31,5 +31,10 @@ export class SmartAdvisoryController {
   @Get('tank-ready')
   checkTankReady() {
     return this.advisoryService.checkTankReady()
+  }
+
+  @Get('expiry')
+  checkExpiry() {
+    return this.advisoryService.checkExpiry()
   }
 }

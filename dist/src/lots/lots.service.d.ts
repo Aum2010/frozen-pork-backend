@@ -14,6 +14,7 @@ export declare class LotsService {
         supplier: string;
         weightKg: number;
         receivedAt: Date;
+        expiryDate: Date | null;
         zone: string | null;
         batchId: string;
         remainingKg: number;
@@ -38,6 +39,7 @@ export declare class LotsService {
         supplier: string;
         weightKg: number;
         receivedAt: Date;
+        expiryDate: Date | null;
         zone: string | null;
         batchId: string;
         remainingKg: number;
@@ -74,6 +76,7 @@ export declare class LotsService {
         supplier: string;
         weightKg: number;
         receivedAt: Date;
+        expiryDate: Date | null;
         zone: string | null;
         batchId: string;
         remainingKg: number;
@@ -86,6 +89,7 @@ export declare class LotsService {
         supplier: string;
         weightKg: number;
         receivedAt: Date;
+        expiryDate: Date | null;
         zone: string | null;
         batchId: string;
         remainingKg: number;

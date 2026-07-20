@@ -25,8 +25,8 @@ let TanksService = class TanksService {
                     where: { emptyAt: null },
                     include: {
                         thawEvent: {
-                            include: { lot: true }
-                        }
+                            include: { lot: true },
+                        },
                     },
                     orderBy: { filledAt: 'asc' },
                 },

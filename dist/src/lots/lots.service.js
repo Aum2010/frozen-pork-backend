@@ -44,6 +44,7 @@ let LotsService = class LotsService {
                 weightKg: dto.weightKg,
                 remainingKg: dto.weightKg,
                 receivedAt: new Date(dto.receivedAt),
+                expiryDate: dto.expiryDate ? new Date(dto.expiryDate) : null,
                 status: 'IN_FREEZER',
             },
         });

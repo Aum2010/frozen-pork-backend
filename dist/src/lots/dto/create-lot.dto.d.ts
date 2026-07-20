@@ -3,4 +3,5 @@ export declare class CreateLotDto {
     supplier: string;
     weightKg: number;
     receivedAt: string;
+    expiryDate?: string;
 }

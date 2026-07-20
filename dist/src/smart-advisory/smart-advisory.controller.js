@@ -32,6 +32,9 @@ let SmartAdvisoryController = class SmartAdvisoryController {
     checkTankReady() {
         return this.advisoryService.checkTankReady();
     }
+    checkExpiry() {
+        return this.advisoryService.checkExpiry();
+    }
 };
 exports.SmartAdvisoryController = SmartAdvisoryController;
 __decorate([
@@ -62,6 +65,12 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], SmartAdvisoryController.prototype, "checkTankReady", null);
+__decorate([
+    (0, common_1.Get)('expiry'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], SmartAdvisoryController.prototype, "checkExpiry", null);
 exports.SmartAdvisoryController = SmartAdvisoryController = __decorate([
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
     (0, common_1.Controller)('advisory'),

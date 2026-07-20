@@ -116,17 +116,53 @@ export class SmartAdvisoryService {
   // ── Summary (สำหรับ Dashboard) ────────────────────────
 
   async getStatus() {
-    const [reorder, thaw, tankReady] = await Promise.all([
+    const [reorder, thaw, tankReady, expiry] = await Promise.all([
       this.checkReorderPoint(),
       this.checkThawReminder(),
       this.checkTankReady(),
+      this.checkExpiry(),  // เพิ่ม
     ])
 
     return {
       reorder,
       thaw,
       tankReady,
-      hasAlert: reorder.shouldReorder || thaw.shouldThaw || tankReady.readyCount > 0,
+      expiry,  // เพิ่ม
+      hasAlert: reorder.shouldReorder || thaw.shouldThaw ||
+        tankReady.readyCount > 0 || expiry.expiredCount > 0 || expiry.warningCount > 0,
+    }
+  }
+
+  async checkExpiry() {
+    const now = new Date()
+    const in7Days = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000)
+
+    const expiringSoon = await this.prisma.lot.findMany({
+      where: {
+        expiryDate: { lte: in7Days },
+        status: { notIn: ['USED'] },
+      },
+      orderBy: { expiryDate: 'asc' },
+    })
+
+    const expired = expiringSoon.filter(
+      (l) => l.expiryDate && l.expiryDate < now
+    )
+
+    const warning = expiringSoon.filter(
+      (l) => l.expiryDate && l.expiryDate >= now
+    )
+
+    return {
+      expiredCount: expired.length,
+      warningCount: warning.length,
+      expired,
+      warning,
+      message: expired.length > 0
+        ? `⚠️ มีหมูหมดอายุแล้ว ${expired.length} lot`
+        : warning.length > 0
+          ? `หมูใกล้หมดอายุ ${warning.length} lot (ภายใน 7 วัน)`
+          : 'ไม่มีหมูใกล้หมดอายุ',
     }
   }
 }

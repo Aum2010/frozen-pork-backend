@@ -19,8 +19,8 @@ export class TanksService {
           where: { emptyAt: null },
           include: {
             thawEvent: {
-              include: { lot: true }  // เข้าถึง lot ผ่าน thawEvent
-            }
+              include: { lot: true },  // include lot ด้วย
+            },
           },
           orderBy: { filledAt: 'asc' },
         },

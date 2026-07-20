@@ -40,6 +40,7 @@ export class LotsService {
         weightKg: dto.weightKg,
         remainingKg: dto.weightKg,  // เริ่มต้น remainingKg = weightKg
         receivedAt: new Date(dto.receivedAt),
+        expiryDate: dto.expiryDate ? new Date(dto.expiryDate) : null, 
         status: 'IN_FREEZER',
       },
     })

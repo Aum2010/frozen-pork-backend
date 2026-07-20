@@ -34,6 +34,7 @@ export declare class SmartAdvisoryController {
                     supplier: string;
                     weightKg: number;
                     receivedAt: Date;
+                    expiryDate: Date | null;
                     zone: string | null;
                     batchId: string;
                     remainingKg: number;
@@ -49,6 +50,37 @@ export declare class SmartAdvisoryController {
                 readyAt: Date;
                 confirmedBy: string;
             })[];
+            message: string;
+        };
+        expiry: {
+            expiredCount: number;
+            warningCount: number;
+            expired: {
+                id: string;
+                status: import(".prisma/client").$Enums.LotStatus;
+                createdAt: Date;
+                lotNumber: string;
+                supplier: string;
+                weightKg: number;
+                receivedAt: Date;
+                expiryDate: Date | null;
+                zone: string | null;
+                batchId: string;
+                remainingKg: number;
+            }[];
+            warning: {
+                id: string;
+                status: import(".prisma/client").$Enums.LotStatus;
+                createdAt: Date;
+                lotNumber: string;
+                supplier: string;
+                weightKg: number;
+                receivedAt: Date;
+                expiryDate: Date | null;
+                zone: string | null;
+                batchId: string;
+                remainingKg: number;
+            }[];
             message: string;
         };
         hasAlert: boolean;
@@ -84,6 +116,7 @@ export declare class SmartAdvisoryController {
                 supplier: string;
                 weightKg: number;
                 receivedAt: Date;
+                expiryDate: Date | null;
                 zone: string | null;
                 batchId: string;
                 remainingKg: number;
@@ -99,6 +132,37 @@ export declare class SmartAdvisoryController {
             readyAt: Date;
             confirmedBy: string;
         })[];
+        message: string;
+    }>;
+    checkExpiry(): Promise<{
+        expiredCount: number;
+        warningCount: number;
+        expired: {
+            id: string;
+            status: import(".prisma/client").$Enums.LotStatus;
+            createdAt: Date;
+            lotNumber: string;
+            supplier: string;
+            weightKg: number;
+            receivedAt: Date;
+            expiryDate: Date | null;
+            zone: string | null;
+            batchId: string;
+            remainingKg: number;
+        }[];
+        warning: {
+            id: string;
+            status: import(".prisma/client").$Enums.LotStatus;
+            createdAt: Date;
+            lotNumber: string;
+            supplier: string;
+            weightKg: number;
+            receivedAt: Date;
+            expiryDate: Date | null;
+            zone: string | null;
+            batchId: string;
+            remainingKg: number;
+        }[];
         message: string;
     }>;
 }

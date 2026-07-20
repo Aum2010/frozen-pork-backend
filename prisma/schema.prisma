@@ -62,6 +62,7 @@ model Lot {
   remainingKg Float     // คงเหลือในตู้แช่
   zone        String?
   status      LotStatus @default(IN_FREEZER)
+  expiryDate  DateTime?  // วันหมดอายุ (optional)
   receivedAt  DateTime
   createdAt   DateTime  @default(now())
 
