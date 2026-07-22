@@ -48,10 +48,12 @@ export class SmartAdvisoryService {
     const lots = await this.prisma.lot.findMany({
       where: {
         status: { in: ['IN_FREEZER', 'PARTIALLY_THAWING', 'FULLY_THAWING'] },
+        remainingKg: { gt: 0 },
       },
     })
 
-    const totalStockKg = lots.reduce((sum, l) => sum + l.weightKg, 0)
+    // const totalStockKg = lots.reduce((sum, l) => sum + l.weightKg, 0)
+    const totalStockKg = lots.reduce((sum, l) => sum + l.remainingKg, 0)
 
     if (dailyUsageKg === 0) {
       return { shouldReorder: false, totalStockKg, daysLeft: Infinity, recommendedOrderKg: 0 }
@@ -140,6 +142,7 @@ export class SmartAdvisoryService {
     const expiringSoon = await this.prisma.lot.findMany({
       where: {
         expiryDate: { lte: in7Days },
+        remainingKg: { gt: 0 },        // เพิ่ม — เฉพาะที่ยังมีของ
         status: { notIn: ['USED'] },
       },
       orderBy: { expiryDate: 'asc' },

@@ -33,7 +33,7 @@ let LedgerController = class LedgerController {
     async exportCsv(lotId, startDate, endDate, res) {
         const csv = await this.ledgerService.exportCsv({ lotId, startDate, endDate });
         const filename = `ledger-${new Date().toISOString().slice(0, 10)}.csv`;
-        res.setHeader('Content-Type', 'text/csv');
+        res.setHeader('Content-Type', 'text/csv; charset=utf-8');
         res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
         res.send(csv);
     }

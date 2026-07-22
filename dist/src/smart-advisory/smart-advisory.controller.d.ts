@@ -28,23 +28,23 @@ export declare class SmartAdvisoryController {
             readyEvents: ({
                 lot: {
                     id: string;
-                    status: import(".prisma/client").$Enums.LotStatus;
-                    createdAt: Date;
                     lotNumber: string;
+                    batchId: string;
                     supplier: string;
                     weightKg: number;
-                    receivedAt: Date;
-                    expiryDate: Date | null;
-                    zone: string | null;
-                    batchId: string;
                     remainingKg: number;
+                    zone: string | null;
+                    status: import(".prisma/client").$Enums.LotStatus;
+                    expiryDate: Date | null;
+                    receivedAt: Date;
+                    createdAt: Date;
                 };
             } & {
                 id: string;
-                status: import(".prisma/client").$Enums.ThawStatus;
-                createdAt: Date;
                 weightKg: number;
                 remainingKg: number;
+                status: import(".prisma/client").$Enums.ThawStatus;
+                createdAt: Date;
                 lotId: string;
                 startedAt: Date;
                 readyAt: Date;
@@ -57,29 +57,29 @@ export declare class SmartAdvisoryController {
             warningCount: number;
             expired: {
                 id: string;
-                status: import(".prisma/client").$Enums.LotStatus;
-                createdAt: Date;
                 lotNumber: string;
+                batchId: string;
                 supplier: string;
                 weightKg: number;
-                receivedAt: Date;
-                expiryDate: Date | null;
-                zone: string | null;
-                batchId: string;
                 remainingKg: number;
+                zone: string | null;
+                status: import(".prisma/client").$Enums.LotStatus;
+                expiryDate: Date | null;
+                receivedAt: Date;
+                createdAt: Date;
             }[];
             warning: {
                 id: string;
-                status: import(".prisma/client").$Enums.LotStatus;
-                createdAt: Date;
                 lotNumber: string;
+                batchId: string;
                 supplier: string;
                 weightKg: number;
-                receivedAt: Date;
-                expiryDate: Date | null;
-                zone: string | null;
-                batchId: string;
                 remainingKg: number;
+                zone: string | null;
+                status: import(".prisma/client").$Enums.LotStatus;
+                expiryDate: Date | null;
+                receivedAt: Date;
+                createdAt: Date;
             }[];
             message: string;
         };
@@ -110,23 +110,23 @@ export declare class SmartAdvisoryController {
         readyEvents: ({
             lot: {
                 id: string;
-                status: import(".prisma/client").$Enums.LotStatus;
-                createdAt: Date;
                 lotNumber: string;
+                batchId: string;
                 supplier: string;
                 weightKg: number;
-                receivedAt: Date;
-                expiryDate: Date | null;
-                zone: string | null;
-                batchId: string;
                 remainingKg: number;
+                zone: string | null;
+                status: import(".prisma/client").$Enums.LotStatus;
+                expiryDate: Date | null;
+                receivedAt: Date;
+                createdAt: Date;
             };
         } & {
             id: string;
-            status: import(".prisma/client").$Enums.ThawStatus;
-            createdAt: Date;
             weightKg: number;
             remainingKg: number;
+            status: import(".prisma/client").$Enums.ThawStatus;
+            createdAt: Date;
             lotId: string;
             startedAt: Date;
             readyAt: Date;
@@ -139,29 +139,29 @@ export declare class SmartAdvisoryController {
         warningCount: number;
         expired: {
             id: string;
-            status: import(".prisma/client").$Enums.LotStatus;
-            createdAt: Date;
             lotNumber: string;
+            batchId: string;
             supplier: string;
             weightKg: number;
-            receivedAt: Date;
-            expiryDate: Date | null;
-            zone: string | null;
-            batchId: string;
             remainingKg: number;
+            zone: string | null;
+            status: import(".prisma/client").$Enums.LotStatus;
+            expiryDate: Date | null;
+            receivedAt: Date;
+            createdAt: Date;
         }[];
         warning: {
             id: string;
-            status: import(".prisma/client").$Enums.LotStatus;
-            createdAt: Date;
             lotNumber: string;
+            batchId: string;
             supplier: string;
             weightKg: number;
-            receivedAt: Date;
-            expiryDate: Date | null;
-            zone: string | null;
-            batchId: string;
             remainingKg: number;
+            zone: string | null;
+            status: import(".prisma/client").$Enums.LotStatus;
+            expiryDate: Date | null;
+            receivedAt: Date;
+            createdAt: Date;
         }[];
         message: string;
     }>;

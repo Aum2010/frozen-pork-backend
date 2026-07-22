@@ -120,6 +120,7 @@ export class LedgerService {
         'productionOrder',
         'note',
       ],
+      withBOM: true,
     })
 
     return parser.parse(data)

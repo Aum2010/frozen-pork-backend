@@ -7,42 +7,42 @@ export declare class LedgerController {
     findAll(lotId?: string, eventType?: EventType, startDate?: string, endDate?: string): Promise<({
         lot: {
             id: string;
-            status: import(".prisma/client").$Enums.LotStatus;
+            weightKg: number;
             createdAt: Date;
             lotNumber: string;
-            supplier: string;
-            weightKg: number;
-            receivedAt: Date;
-            expiryDate: Date | null;
-            zone: string | null;
             batchId: string;
+            supplier: string;
             remainingKg: number;
+            zone: string | null;
+            status: import(".prisma/client").$Enums.LotStatus;
+            expiryDate: Date | null;
+            receivedAt: Date;
         } | null;
     } & {
         id: string;
-        createdAt: Date;
-        weightKg: number;
         eventType: import(".prisma/client").$Enums.EventType;
-        actorId: string;
-        productionOrder: string | null;
-        note: string | null;
         lotId: string | null;
         thawEventId: string | null;
         tankEntryId: string | null;
+        weightKg: number;
+        actorId: string;
+        productionOrder: string | null;
+        note: string | null;
+        createdAt: Date;
     })[]>;
     getTimeline(lotId: string): Promise<{
         lot: {
             id: string;
-            status: import(".prisma/client").$Enums.LotStatus;
+            weightKg: number;
             createdAt: Date;
             lotNumber: string;
-            supplier: string;
-            weightKg: number;
-            receivedAt: Date;
-            expiryDate: Date | null;
-            zone: string | null;
             batchId: string;
+            supplier: string;
             remainingKg: number;
+            zone: string | null;
+            status: import(".prisma/client").$Enums.LotStatus;
+            expiryDate: Date | null;
+            receivedAt: Date;
         };
         timeline: {
             step: string;
